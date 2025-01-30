@@ -1,0 +1,11 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  script: |
+    docker build -t us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-docker-repo/quickstart-image:${COMMIT_SHA} .
+  automapSubstitutions: true
+images:
+- 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-docker-repo/quickstart-image:${COMMIT_SHA}'
+
+options:
+  defaultLogsBucketBehavior: "REGIONAL_USER_OWNED_BUCKET"
+
