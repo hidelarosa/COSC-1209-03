@@ -5,7 +5,9 @@ steps:
       - 'build'
       - '-t'
       - 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/app-image:${COMMIT_SHA}'
-      - '.'
+      - '-f'
+      - 'Docker/Dockerfile'  # Change this if your Dockerfile is in a subfolder
+      - 'Docker/'  # Change this if needed
 
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -14,4 +16,4 @@ steps:
       - 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/app-image:${COMMIT_SHA}'
 
 options:
- defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET  # Stores build logs in a regional user-owned bucket
+  defaultLogsBucketBehavior: "REGIONAL_USER_OWNED_BUCKET"  # Corrected the enum value
