@@ -14,4 +14,4 @@ steps:
       - 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/app-image:${COMMIT_SHA}'
 
 options:
-  logging: REGIONAL_USER_OWNED_BUCKET  # Stores build logs in a regional user-owned bucket
+ defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET  # Stores build logs in a regional user-owned bucket
