@@ -4,7 +4,7 @@ steps:
     args:
       - "build"
       - "-t"
-      - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-image:${COMMIT_SHA}""
+      - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-image:${COMMIT_SHA}"
       - "."
 
   # Step 2: Push the Docker image to Artifact Registry
