@@ -1,23 +1,25 @@
 steps:
-  # Step 1: Build the Docker image using Cloud Build
-  - name: "gcr.io/cloud-builders/docker"
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'build_image'
     args:
-      - "build"
-      - "-t"
-      - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-image:${COMMIT_SHA}"
-      - "."
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/web-app:$COMMIT_SHA'
+      - '.'
 
   # Step 2: Push the Docker image to Artifact Registry
-  - name: "gcr.io/cloud-builders/docker"
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push_image'
     args:
-      - "push"
-      - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-image:${COMMIT_SHA}"
+      - 'push'
+      - 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/web-app:$COMMIT_SHA'
+
+# Set options for logs bucket
+options:
+  defaultLogsBucketBehavior: "REGIONAL_USER_OWNED_BUCKET"
 
 images:
-  - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/quickstart-image:${COMMIT_SHA}"
+  - 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/web-app:$COMMIT_SHA'
 
-options:
-  defaultLogsBucketBehavior: "REGIONAL_USER_OWNED_BUCKET"  # Stores build logs in a regional user-owned bucket
-
-
-
+timeout: '1200s'  # Optional timeout (20 minutes)
