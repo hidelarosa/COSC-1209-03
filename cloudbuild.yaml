@@ -3,16 +3,16 @@ steps:
     args:
       - "build"
       - "-t"
-      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039:${SHORT_SHA}"
+      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039"
       - "."
 
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
-      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039:${SHORT_SHA}"
+      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039"
 
 options:
   logging: CLOUD_LOGGING_ONLY
 
 images:
-  - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039:${SHORT_SHA}"
+  - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039"
