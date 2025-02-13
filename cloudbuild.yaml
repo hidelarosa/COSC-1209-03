@@ -1,0 +1,18 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}"
+      - "."
+
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+images:
+  - "${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}"
