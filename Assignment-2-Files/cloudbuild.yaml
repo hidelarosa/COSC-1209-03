@@ -1,22 +1,21 @@
 steps:
+  # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '-t'
-      - '${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}'
-      - '.'
-  
+    args: [
+      'build',
+      '-t', 'us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039/my-app:$COMMIT_SHA',
+      '.'
+    ]
+
+  # Step 2: Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - '${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}'
+    args: [
+      'push',
+      'us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039/my-app:$COMMIT_SHA'
+    ]
+
+images:
+  - 'us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039/my-app:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
-substitutions:
-  _ARTIFACT_REGISTRY: 'us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039'
-  _REPO_NAME: 'my-app'
-
-images:
-  - '${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}'
