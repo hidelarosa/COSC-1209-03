@@ -4,14 +4,14 @@ steps:
     args:
       - "build"
       - "-t"
-      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039/my-image:${SHORT_SHA}"
+      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039:${SHORT_SHA}"
       - "."  # Ensure the build context is the root of the repository where the Dockerfile is located.
 
   # Step to push the Docker image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
-      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039/my-image:${SHORT_SHA}"
+      - "us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039:${SHORT_SHA}"
 
 options:
   logging: CLOUD_LOGGING_ONLY
