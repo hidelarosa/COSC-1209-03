@@ -1,9 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'gcr.io/robust-catalyst-450803-e4/harlan-100935039', '.' ]
+    args: [ 'build', '-t', 'gcr.io/us-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039', '.' ]
      
 images:
-  - 'gcr.io/robust-catalyst-450803-e4/harlan-100935039'
+  - 'gcr.io/rus-central1-docker.pkg.dev/robust-catalyst-450803-e4/harlan-100935039'
 
 options:
   logging: CLOUD_LOGGING_ONLY
