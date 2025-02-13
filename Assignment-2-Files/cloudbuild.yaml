@@ -17,3 +17,6 @@ substitutions:
 
 images:
   - "${_ARTIFACT_REGISTRY}/${_REPO_NAME}:${SHORT_SHA}"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
