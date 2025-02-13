@@ -1,19 +1,20 @@
-# Use an official Nginx image from the Docker Hub
-FROM nginx:alpine
+# Use an existing image as a base
+FROM node:14
 
-# Install Git to clone the repository
-RUN apk add --no-cache git
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
 
-# Clone the GitHub repository and copy only the website files
-RUN git clone --depth 1 https://github.com/hidelarosa/COSC-1209-03.git && \
-    cp -r COSC-1209-03/Mywebsite/* . && \
-    rm -rf COSC-1209-03
+# Install the dependencies
+RUN npm install
 
-# Expose port 80 (default port for web traffic)
-EXPOSE 80
+# Copy the rest of the code
+COPY . .
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Expose the port that the app listens on
+EXPOSE 3000
+
+# Define the command to run the app
+CMD ["node", "app.js"]
