@@ -1,14 +1,11 @@
-FROM alpine
+# Use an official Nginx image from the Docker Hub
+FROM nginx:alpine
 
-# Install Python (to run the HTTP server)
-RUN apk add --no-cache python3
+# Copy your website files into the Nginx container
+COPY . /usr/share/nginx/html
 
-# Copy the quickstart script into the container
-COPY quickstart.sh /
-
-# Expose port 8080
+# Expose port 80 (default port for web traffic)
 EXPOSE 8080
 
-# Make the script executable and run it
-RUN chmod +x /quickstart.sh
-CMD ["/quickstart.sh"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
